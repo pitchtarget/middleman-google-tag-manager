@@ -22,6 +22,11 @@ In `config.rb`
 ```ruby
 activate :google_tag_manager do |gtm|
   gtm.container_id = 'your Google Tag Manager container ID' # required
+  gtm.gtm_preview = 'XYZ' #required
+  gtm.gtm_auth = 'XYZ' #required
+  gtm.amp_container_id = 'XYZ' #required
+  gtm.amp_gtm_preview = 'XYZ' #required
+  gtm.amp_gtm_auth = 'XYZ' #required
   gtm.development = true # Render tag in development environment
 end
 ```
