@@ -46,13 +46,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       END
     end
 
-    def google_tag_manager_amp_body(content)
+    def google_tag_manager_amp_body(content, data_permit_notification_id=nil)
       options = extensions[:google_tag_manager].options
       return unless !legacy_development? || options.development
 
+      # <amp-analytics config="https://www.googletagmanager.com/amp.json?id=#{options.amp_container_id}&gtm_auth=#{options.amp_gtm_auth}&gtm_preview=#{options.amp_gtm_preview}&gtm_cookies_win=x&gtm.url=SOURCE_URL" data-credentials="include" data-permit-notification-id="#{data_permit_notification_id}">
       <<-END
 <!-- Google Tag Manager -->
-<amp-analytics config="https://www.googletagmanager.com/amp.json?id=#{options.amp_container_id}&gtm_auth=#{options.amp_gtm_auth}&gtm_preview=#{options.amp_gtm_preview}&gtm_cookies_win=x&gtm.url=SOURCE_URL" data-credentials="include">
+<amp-analytics config="https://www.googletagmanager.com/amp.json?id=#{options.amp_container_id}&gtm_auth=#{options.amp_gtm_auth}&gtm_preview=#{options.amp_gtm_preview}&gtm_cookies_win=x&gtm.url=SOURCE_URL" data-credentials="include" #{"data-permit-notification-id="+data_permit_notification_id unless data_permit_notification_id.nil?}>
 #{content}
 </amp-analytics>
       END
